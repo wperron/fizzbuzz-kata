@@ -29,3 +29,18 @@ fizzbuzz_lambda = lambda n: (
     'Buzz' * (n % 5 == 0) or 
     str(n)
 )
+
+
+def arithmetic(n):
+    options = [str(n), 'Fizz', 'Buzz', 'FizzBuzz']
+    pattern = [3, 0, 0, 1, 0, 2, 1, 0, 0, 1, 2, 0, 1, 0, 0]
+    return options[pattern[n % 15]]
+
+
+def higher_order(n):
+    fizz = lambda k: ( lambda j: "Fizz" + k("") ) if n % 3 == 0 else k
+    buzz = lambda k: ( lambda j: "Buzz" + k("") ) if n % 5 == 0 else k
+    identity = lambda x: x 
+
+    return fizz(buzz(identity))(n)
+
