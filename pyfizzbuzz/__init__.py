@@ -45,6 +45,13 @@ def higher_order(n):
     return fizz(buzz(identity))(n)
 
 
+def generator(n):
+    curr = 1
+    while curr <= n:
+        yield 'Fizz' * (curr % 3 == 0) + 'Buzz' * (curr % 5 == 0) or curr
+        curr += 1
+
+
 class FizzBuzz:
     fizz = "Fizz"
     buzz = "Buzz"

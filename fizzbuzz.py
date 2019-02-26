@@ -11,5 +11,12 @@ if __name__ == "__main__":
     print(f'Calculating FizzBuzz up to [ {args.limit} ] using [ {args.alg} ]')
 
     target = getattr(pyfizzbuzz, args.alg)
+    # Special case for the generator algorithm
+    if args.alg == 'generator':
+        for i in target(args.limit):
+            print(i)
+        exit(0)
+
     for i in range(1, args.limit + 1):
         print(target(i))
+        pass
