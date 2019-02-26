@@ -45,16 +45,28 @@ def higher_order(n):
     return fizz(buzz(identity))(n)
 
 
-class Fizz:
-    def __call__(self, n):
-        return "Fizz" * (n % 3 == 0) or ''
+class FizzBuzz:
+    fizz = "Fizz"
+    buzz = "Buzz"
 
-class Buzz:
-    def __call__(self, n):
-        return "Buzz" * (n % 5 == 0) or ''
+    def __init__(self, n):
+        self.n = n
+
+    def is_fizz(self):
+        return self.n % 3 == 0
+
+    def is_buzz(self):
+        return self.n % 5 == 0
+
+    def __str__(self):
+        if self.is_fizz() and self.is_buzz():
+            return self.fizz + self.buzz
+        if self.is_fizz():
+            return self.fizz
+        if self.is_buzz():
+            return self.buzz
+        return str(self.n)
 
 
 def object_oriented(n):
-    fizz = Fizz()
-    buzz = Buzz()
-    return fizz(n) + buzz(n) or n
+    return str(FizzBuzz(n))
