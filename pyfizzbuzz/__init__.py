@@ -1,3 +1,6 @@
+from itertools import cycle
+from functools import reduce
+
 def functional(n):
     if n % 3 == 0 and n % 5 == 0:
         return "FizzBuzz"
@@ -50,6 +53,14 @@ def generator(n):
     while curr <= n:
         yield 'Fizz' * (curr % 3 == 0) + 'Buzz' * (curr % 5 == 0) or curr
         curr += 1
+
+
+def infinity(n):
+    fizzes = cycle(['', '', 'Fizz'])
+    buzzes = cycle(['', '', '', '', 'Buzz'])
+    words = iter(map(lambda x: reduce(lambda i, j: str(i) + str(j), x), zip(fizzes, buzzes)))
+    choice = lambda word, num: word or num
+    return [choice(next(words), i) for i in range(1, n + 1)]
 
 
 class FizzBuzz:
